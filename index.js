@@ -1,14 +1,17 @@
 "use strict";
 
 const {app, BrowserWindow} = require("electron");
-const path = require("path");
+
+// https://github.com/electron/electron/issues/6571
+app.commandLine.appendSwitch("high-dpi-support", 1);
+app.commandLine.appendSwitch("force-device-scale-factor", 1);
 
 const createWindow = _ => {
     const mainWindow = new BrowserWindow({
         show: false
     });
 
-    mainWindow.loadFile(path.join(__dirname, "index.html"));
+    mainWindow.loadFile("index.html");
     mainWindow.maximize();
     mainWindow.show();
 };
@@ -17,7 +20,6 @@ app.whenReady()
    .then(_ => {
         // create main window.
         createWindow();
-        
         app.on('activate', _ => {
             // On macOS it's common to re-create a window in the app when the
             // dock icon is clicked and there are no other windows open.

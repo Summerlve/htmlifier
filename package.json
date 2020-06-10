@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "electron .",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,28 @@
     "url": "https://github.com/Summerlve/htmlifier/issues"
   },
   "homepage": "https://github.com/Summerlve/htmlifier#readme",
-  "dependencies": {
-    "electron": "^9.0.3"
+  "devDependencies": {
+    "electron": "^9.0.3",
+    "electron-builder": "^22.7.0"
+  },
+  "build": {
+    "appId": "edu.qy",
+    "directories": {
+      "output": "build/"
+    },
+    "productName": "htmlifier-electron",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "identity": null
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
   }
 }
